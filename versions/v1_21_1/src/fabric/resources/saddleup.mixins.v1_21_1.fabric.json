@@ -1,0 +1,13 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "required": false,
+  "plugin": "dev.neuralnexus.saddleup.mixin.plugin.SaddleUpMixinPlugin",
+  "package": "dev.neuralnexus.saddleup.mixin",
+  "mixins": [],
+  "server": [],
+  "client": []
+}
