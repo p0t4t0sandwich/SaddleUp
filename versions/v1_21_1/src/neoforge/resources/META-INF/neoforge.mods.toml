@@ -1,0 +1,27 @@
+# https://neoforged.net
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "MIT"
+
+[[mods]]
+modId = "saddleup"
+version = "0.0.1"
+
+[[mixins]]
+config = "saddleup.mixins.v1_21_1.neoforge.json"
+
+# NeoForge Dependency
+[[dependencies.saddleup]]
+modId = "neoforge"
+type = "required"
+versionRange = "[20.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+# Minecraft Dependency
+[[dependencies.saddleup]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1,)"
+ordering = "NONE"
+side = "BOTH"

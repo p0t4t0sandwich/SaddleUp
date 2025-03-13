@@ -5,13 +5,9 @@
     "defaultRequire": 1
   },
   "required": false,
-  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib.mixin",
-  "mixins": [
-    "v1_21_1.vanilla.core.world.entity.EntityMixin",
-    "v1_21_1.vanilla.core.world.level.block.BlockMixin",
-    "v1_21_1.vanilla.listeners.player.PlayerRespawnMixin"
-  ],
+  "plugin": "dev.neuralnexus.saddleup.mixin.plugin.SaddleUpMixinPlugin",
+  "package": "dev.neuralnexus.saddleup.mixin",
+  "mixins": [],
   "server": [],
   "client": []
 }
