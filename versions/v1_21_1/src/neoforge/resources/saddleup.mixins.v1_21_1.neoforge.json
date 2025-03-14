@@ -8,6 +8,8 @@
   "plugin": "dev.neuralnexus.saddleup.mixin.plugin.SaddleUpMixinPlugin",
   "package": "dev.neuralnexus.saddleup.mixin",
   "mixins": [
+    "v1_21_1.neoforge.ItemBasedSteeringAccessor",
+    "v1_21_1.neoforge.ItemSteerableImplementMixin",
     "v1_21_1.neoforge.LivingEntityMixin",
     "v1_21_1.neoforge.MobMixin",
     "v1_21_1.neoforge.SaddleableImplementMixin"
