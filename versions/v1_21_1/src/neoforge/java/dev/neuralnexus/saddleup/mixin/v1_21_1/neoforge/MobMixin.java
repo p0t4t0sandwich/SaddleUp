@@ -67,17 +67,17 @@ public abstract class MobMixin extends LivingEntity {
         }
     }
 
-    @SuppressWarnings("ConstantValue")
-    @Inject(method = "defineSynchedData", at = @At("TAIL"))
-    private void saddleup$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        Object self = this;
-        if (!(self instanceof Saddleable)
-                || self instanceof Pig
-                || self instanceof Strider
-                || self instanceof AbstractHorse) {
-            return;
-        }
-        builder.define(HelperMethods.getDATA_SADDLE_ID(this.getClass()), false);
-        builder.define(HelperMethods.getDATA_BOOST_TIME(this.getClass()), 0);
-    }
+//    @SuppressWarnings("ConstantValue")
+//    @Inject(method = "defineSynchedData", at = @At("TAIL"))
+//    private void saddleup$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
+//        Object self = this;
+//        if (!(self instanceof Saddleable)
+//                || self instanceof Pig
+//                || self instanceof Strider
+//                || self instanceof AbstractHorse) {
+//            return;
+//        }
+//        builder.define(HelperMethods.getDATA_SADDLE_ID(this.getClass()), false);
+//        builder.define(HelperMethods.getDATA_BOOST_TIME(this.getClass()), 0);
+//    }
 }

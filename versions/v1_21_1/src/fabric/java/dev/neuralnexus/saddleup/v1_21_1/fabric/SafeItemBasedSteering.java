@@ -1,6 +1,6 @@
-package dev.neuralnexus.saddleup.v1_21_1.neoforge;
+package dev.neuralnexus.saddleup.v1_21_1.fabric;
 
-import dev.neuralnexus.saddleup.mixin.v1_21_1.neoforge.ItemBasedSteeringAccessor;
+import dev.neuralnexus.saddleup.mixin.v1_21_1.fabric.ItemBasedSteeringAccessor;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
