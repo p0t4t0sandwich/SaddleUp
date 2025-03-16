@@ -1,17 +1,23 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/SaddleUp/blob/dev/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.saddleup.v1_21_1.fabric;
 
-import dev.neuralnexus.saddleup.mixin.v1_21_1.fabric.ItemBasedSteeringAccessor;
+import dev.neuralnexus.saddleup.mixin.v1_21_1.fabric.steering.ItemBasedSteeringAccessor;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ItemBasedSteering;
+
 import org.jetbrains.annotations.NotNull;
 
 public class SafeItemBasedSteering extends ItemBasedSteering {
     private static final int MIN_BOOST_TIME = 140;
     private static final int MAX_BOOST_TIME = 700;
-    private int boostTimeAccessor;
-    private boolean hasSaddleAccessor;
+    private int boostTime;
+    private boolean hasSaddle;
 
     public SafeItemBasedSteering() {
         super(null, null, null);
@@ -40,21 +46,28 @@ public class SafeItemBasedSteering extends ItemBasedSteering {
         } else {
             this.accessor().accessor$setBoosting(true);
             this.accessor().accessor$setBoostTime(0);
-            this.boostTimeAccessor = random.nextInt(MAX_BOOST_TIME + MIN_BOOST_TIME + 1) + MIN_BOOST_TIME;
+            this.boostTime = random.nextInt(MAX_BOOST_TIME + MIN_BOOST_TIME + 1) + MIN_BOOST_TIME;
             return true;
         }
     }
 
     @Override
     public void tickBoost() {
-        if (this.accessor().accessor$boosting() && this.incBoostTime() > this.boostTimeAccessor) {
+        if (this.accessor().accessor$boosting() && this.incBoostTime() > this.boostTime) {
             this.accessor().accessor$setBoosting(false);
         }
     }
 
     @Override
     public float boostFactor() {
-        return this.accessor().accessor$boosting() ? 1.0F + 1.15F * Mth.sin((float)this.accessor().accessor$boostTime() / (float)this.boostTimeAccessor * (float)Math.PI) : 1.0F;
+        return this.accessor().accessor$boosting()
+                ? 1.0F
+                        + 1.15F
+                                * Mth.sin(
+                                        (float) this.accessor().accessor$boostTime()
+                                                / (float) this.boostTime
+                                                * (float) Math.PI)
+                : 1.0F;
     }
 
     @Override
@@ -69,11 +82,11 @@ public class SafeItemBasedSteering extends ItemBasedSteering {
 
     @Override
     public void setSaddle(boolean hasSaddle) {
-        this.hasSaddleAccessor = hasSaddle;
+        this.hasSaddle = hasSaddle;
     }
 
     @Override
     public boolean hasSaddle() {
-        return this.hasSaddleAccessor;
+        return this.hasSaddle;
     }
 }

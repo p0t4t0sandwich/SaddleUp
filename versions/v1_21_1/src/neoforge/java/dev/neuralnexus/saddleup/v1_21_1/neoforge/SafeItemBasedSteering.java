@@ -1,10 +1,16 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/SaddleUp/blob/dev/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.saddleup.v1_21_1.neoforge;
 
 import dev.neuralnexus.saddleup.mixin.v1_21_1.neoforge.ItemBasedSteeringAccessor;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ItemBasedSteering;
+
 import org.jetbrains.annotations.NotNull;
 
 public class SafeItemBasedSteering extends ItemBasedSteering {
@@ -40,7 +46,8 @@ public class SafeItemBasedSteering extends ItemBasedSteering {
         } else {
             this.accessor().accessor$setBoosting(true);
             this.accessor().accessor$setBoostTime(0);
-            this.boostTimeAccessor = random.nextInt(MAX_BOOST_TIME + MIN_BOOST_TIME + 1) + MIN_BOOST_TIME;
+            this.boostTimeAccessor =
+                    random.nextInt(MAX_BOOST_TIME + MIN_BOOST_TIME + 1) + MIN_BOOST_TIME;
             return true;
         }
     }
@@ -54,7 +61,14 @@ public class SafeItemBasedSteering extends ItemBasedSteering {
 
     @Override
     public float boostFactor() {
-        return this.accessor().accessor$boosting() ? 1.0F + 1.15F * Mth.sin((float)this.accessor().accessor$boostTime() / (float)this.boostTimeAccessor * (float)Math.PI) : 1.0F;
+        return this.accessor().accessor$boosting()
+                ? 1.0F
+                        + 1.15F
+                                * Mth.sin(
+                                        (float) this.accessor().accessor$boostTime()
+                                                / (float) this.boostTimeAccessor
+                                                * (float) Math.PI)
+                : 1.0F;
     }
 
     @Override

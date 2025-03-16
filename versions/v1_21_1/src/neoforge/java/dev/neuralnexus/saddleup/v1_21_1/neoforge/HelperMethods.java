@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/SaddleUp/blob/dev/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.saddleup.v1_21_1.neoforge;
 
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -12,19 +16,25 @@ import net.minecraft.world.level.Level;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class HelperMethods {
-    private static final ConcurrentHashMap<Class<?>, EntityDataAccessor<Boolean>> entityData$DATA_SADDLE_ID = new ConcurrentHashMap<>();
-    private static final ConcurrentHashMap<Class<?>, EntityDataAccessor<Integer>> entityData$DATA_BOOST_TIME = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<Class<?>, EntityDataAccessor<Boolean>>
+            entityData$DATA_SADDLE_ID = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<Class<?>, EntityDataAccessor<Integer>>
+            entityData$DATA_BOOST_TIME = new ConcurrentHashMap<>();
 
-    public static EntityDataAccessor<Boolean> getDATA_SADDLE_ID(Class<? extends SyncedDataHolder> clazz) {
+    public static EntityDataAccessor<Boolean> getDATA_SADDLE_ID(
+            Class<? extends SyncedDataHolder> clazz) {
         if (!entityData$DATA_SADDLE_ID.containsKey(clazz)) {
-            entityData$DATA_SADDLE_ID.put(clazz, SynchedEntityData.defineId(clazz, EntityDataSerializers.BOOLEAN));
+            entityData$DATA_SADDLE_ID.put(
+                    clazz, SynchedEntityData.defineId(clazz, EntityDataSerializers.BOOLEAN));
         }
         return entityData$DATA_SADDLE_ID.get(clazz);
     }
 
-    public static EntityDataAccessor<Integer> getDATA_BOOST_TIME(Class<? extends SyncedDataHolder> clazz) {
+    public static EntityDataAccessor<Integer> getDATA_BOOST_TIME(
+            Class<? extends SyncedDataHolder> clazz) {
         if (!entityData$DATA_BOOST_TIME.containsKey(clazz)) {
-            entityData$DATA_BOOST_TIME.put(clazz, SynchedEntityData.defineId(clazz, EntityDataSerializers.INT));
+            entityData$DATA_BOOST_TIME.put(
+                    clazz, SynchedEntityData.defineId(clazz, EntityDataSerializers.INT));
         }
         return entityData$DATA_BOOST_TIME.get(clazz);
     }

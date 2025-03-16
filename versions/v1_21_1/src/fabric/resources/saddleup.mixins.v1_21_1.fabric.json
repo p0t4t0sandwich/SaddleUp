@@ -8,12 +8,12 @@
   "plugin": "dev.neuralnexus.saddleup.mixin.plugin.SaddleUpMixinPlugin",
   "package": "dev.neuralnexus.saddleup.mixin",
   "mixins": [
-    "v1_21_1.fabric.EntityMixin",
-    "v1_21_1.fabric.ItemBasedSteeringAccessor",
-    "v1_21_1.fabric.ItemSteerableImplementMixin",
-    "v1_21_1.fabric.LivingEntityMixin",
-    "v1_21_1.fabric.MobMixin",
-    "v1_21_1.fabric.SaddleableImplementMixin"
+    "v1_21_1.fabric.saddle.EntityMixin",
+    "v1_21_1.fabric.saddle.LivingEntityMixin",
+    "v1_21_1.fabric.saddle.MobMixin",
+    "v1_21_1.fabric.saddle.SaddleableImplementMixin",
+    "v1_21_1.fabric.steering.ItemBasedSteeringAccessor",
+    "v1_21_1.fabric.steering.ItemSteerableImplementMixin"
   ],
   "server": [],
   "client": []

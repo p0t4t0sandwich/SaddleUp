@@ -1,21 +1,20 @@
-package dev.neuralnexus.saddleup.mixin.v1_21_1.fabric;
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/SaddleUp/blob/dev/LICENSE">MIT</a>
+ */
+package dev.neuralnexus.saddleup.mixin.v1_21_1.fabric.saddle;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.Saddleable;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.monster.Strider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Items;
+
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -37,10 +36,8 @@ public abstract class EntityMixin {
             return;
         }
 
-        LivingEntity entity = this.shadow$getControllingPassenger();
-        if (entity instanceof Player player) {
-            cir.setReturnValue(player.isLocalPlayer()
-                    || FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT);
+        if (this.shadow$getControllingPassenger() instanceof Player) {
+            cir.setReturnValue(true);
         } else {
             cir.setReturnValue(this.shadow$isEffectiveAi());
         }

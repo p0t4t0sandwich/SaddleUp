@@ -1,7 +1,9 @@
-package dev.neuralnexus.saddleup.mixin.v1_21_1.fabric;
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/SaddleUp/blob/dev/LICENSE">MIT</a>
+ */
+package dev.neuralnexus.saddleup.mixin.v1_21_1.fabric.saddle;
 
-import dev.neuralnexus.saddleup.v1_21_1.fabric.HelperMethods;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -17,10 +19,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = Mob.class)
@@ -29,11 +31,10 @@ public abstract class MobMixin extends LivingEntity {
         super(type, level);
     }
 
-    // Inject into the end of Animal#mobInteract
-    // Logic adapted from Pig#mobInteract
     @SuppressWarnings("resource")
     @Inject(method = "mobInteract", at = @At("TAIL"), cancellable = true)
-    private void saddleup$mobInteract(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
+    private void saddleup$mobInteract(
+            Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
         Object self = this;
         if (!(self instanceof Saddleable saddleable)
                 || self instanceof Pig

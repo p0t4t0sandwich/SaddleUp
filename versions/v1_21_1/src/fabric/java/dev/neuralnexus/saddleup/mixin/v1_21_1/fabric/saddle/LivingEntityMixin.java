@@ -2,9 +2,9 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/SaddleUp/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.saddleup.mixin.v1_21_1.neoforge;
+package dev.neuralnexus.saddleup.mixin.v1_21_1.fabric.saddle;
 
-import dev.neuralnexus.saddleup.v1_21_1.neoforge.SteeringBridge;
+import dev.neuralnexus.saddleup.v1_21_1.fabric.SteeringBridge;
 
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
@@ -14,7 +14,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Saddleable;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
@@ -25,7 +24,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -33,12 +31,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = LivingEntity.class, remap = false)
+@Mixin(value = LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements SteeringBridge {
     // @spotless:off
     @Shadow public float yBodyRot;
     @Shadow public float yHeadRot;
-    @Shadow @Nullable public abstract AttributeInstance shadow$getAttribute(Holder<Attribute> holder);
     @Shadow public abstract double shadow$getAttributeValue(Holder<Attribute> holder);
     // @spotless:on
 
@@ -70,8 +67,6 @@ public abstract class LivingEntityMixin extends Entity implements SteeringBridge
             return;
         }
         if (this.bridge$steering() != null && this.level().isClientSide) {
-            //        if (HelperMethods.getDATA_BOOST_TIME(this.getClass()).equals(accessor) &&
-            // this.level().isClientSide) {
             this.bridge$steering().onSynced();
         }
     }
@@ -109,7 +104,6 @@ public abstract class LivingEntityMixin extends Entity implements SteeringBridge
                 || self instanceof AbstractHorse) {
             return;
         }
-        System.out.println("TICK RIDDEN");
         this.setRot(player.getYRot(), player.getXRot() * 0.5F);
         this.yRotO = this.yBodyRot = this.yHeadRot = this.getYRot();
         this.bridge$steering().tickBoost();
@@ -125,9 +119,7 @@ public abstract class LivingEntityMixin extends Entity implements SteeringBridge
                 || self instanceof AbstractHorse) {
             return;
         }
-        System.out.println("RIDDEN INPUT");
         cir.setReturnValue(new Vec3(0.0F, 0.0F, 1.0F));
-        cir.cancel();
     }
 
     @Inject(method = "getRiddenSpeed", at = @At("HEAD"), cancellable = true)
@@ -139,12 +131,10 @@ public abstract class LivingEntityMixin extends Entity implements SteeringBridge
                 || self instanceof AbstractHorse) {
             return;
         }
-        System.out.println("RIDDEN SPEED");
         cir.setReturnValue(
                 (float)
                         (this.shadow$getAttributeValue(Attributes.MOVEMENT_SPEED)
                                 * 0.225
                                 * (double) this.bridge$steering().boostFactor()));
-        cir.cancel();
     }
 }

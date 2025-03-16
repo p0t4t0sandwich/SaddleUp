@@ -1,6 +1,11 @@
-package dev.neuralnexus.saddleup.mixin.v1_21_1.fabric;
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/SaddleUp/blob/dev/LICENSE">MIT</a>
+ */
+package dev.neuralnexus.saddleup.mixin.v1_21_1.fabric.steering;
 
 import net.minecraft.world.entity.ItemBasedSteering;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
